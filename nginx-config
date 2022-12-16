@@ -1,0 +1,48 @@
+upstream backend-servers {
+    server  localhost:5100;
+    server  localhost:5200;
+    server  localhost:5300;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name tuffix-vm;
+
+    location = /auth/register {
+        proxy_pass              http://localhost:5000;
+    }
+
+    location = /webhook {
+        auth_basic              off;
+        proxy_pass              http://backend-servers;
+    }
+
+    location = /leaderboard/top10 {
+        proxy_pass              http://localhost:5400;
+    }
+
+    location = /leaderboard/report {
+	    internal;
+        proxy_pass              http://localhost:5400;
+        proxy_pass_request_body off;
+        proxy_set_header        Content-Length "";
+        proxy_set_header        X-Original-URI $request_uri;
+    }
+
+    location / {
+        auth_request            /auth/signin;
+        auth_request_set        $auth_status $upstream_status;
+        proxy_pass              http://backend-servers;
+    }
+
+    location = /auth/signin {
+        internal;
+        proxy_pass              http://localhost:5000;
+        proxy_pass_request_body off;
+        proxy_set_header        Content-Length "";
+        proxy_set_header        X-Original-URI $request_uri;
+    }
+
+}
