@@ -113,25 +113,33 @@ async def get_top_ten():
 @tag("Leaderboard")
 async def post_game_results():
     req_body = await request.get_json()
+    app.logger.info(req_body)
     user = req_body["username"]
+    app.logger.info(f"user: {user}")
     guesses = req_body["guesses"]
+    app.logger.info(f"guesses: {str(guesses)}")
     status = req_body["status"].lower()
+    app.logger.info(f"status: {status}")
 
-    if status != "lost" and status != "win":
+    if status != "lost" and status != "won":
         abort(400, "Status is incorrect.")
 
-    if status == "win":
+    if status == "won":
         score = 6 - (int(guesses) - 1)
     else:
         score = 0
 
     if r.hgetall(user) is not None:
+        app.logger.info("user found")
         r.hincrby(user, "gamesPlayed", 1)
         r.hincrby(user, "totalScore", score)
         avg = await average_score(user)
         r.zadd("players", {user: avg})
     else:
+        app.logger.info("user not found, creating user")
         r.hmset(user, {"gamesPlayed": 1, "totalScore": score})
         r.zadd("players", {user: score})
+
+    app.logger.info("zadded, now returning")
 
     return r.hgetall(user), 200

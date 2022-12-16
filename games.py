@@ -387,7 +387,7 @@ async def check_guess(data, game_id):
         if guess == info[0]:
             game_info["status"] = "won"
             job = queue.enqueue(bg_job, game_info, uname, url)
-            app.logger.info(f"job enqueued for loss. job ID = {job.get_id()} ")
+            app.logger.info(f"job enqueued for win. job ID = {job.get_id()} ")
         else:
             if game_info["remaining_guesses"] == 0:
                 game_info["status"] = "lost"
