@@ -1,11 +1,11 @@
-# [CPSC 449] Project 3
+# [CPSC 449] Project 4
 
 ## Team members:
 
 1. Clemente Solorio
-2. Anusha Hadagali
-3. Eddie Poulson Valdez
-4. Sreevidya Sreekantham
+2. Clay Golan
+3. Muktita Kim
+4. Rakesh Singh
 
 ## Issues faced:
 
@@ -35,7 +35,7 @@ For some reason, the global attribute will always be null so the next element in
 
 ### Initialization Stage
 
-- To configure nginx, copy the contents of the file `nginx-config` at the root of the project, into the file on your VM located at the path `/etc/nginx/sites-enabled/tutorial`
+- To configure nginx, copy the contents of the file `nginx-config` at the root of the project, into the file on your VM located at the path `/etc/nginx/sites-enabled/tutorial`, and run `sudo service nginx restart`.
 
 - Then, change directory into the project and run `sh bin/init.sh` to set up the necessary file structure and start the services with foreman.
 
@@ -73,8 +73,8 @@ For some reason, the global attribute will always be null so the next element in
 
 - **Check leaderboard top 10** by making a `GET` request to the endpoint `/leaderboard/top10` like so:
 
-  `http tuffix-vm//leaderboard/top10`
+  `http tuffix-vm/leaderboard/top10`
 
 - **Add a new game result** by making a `POST` request to the endpoint `/leaderboard/report` like so:
 
-  `http POST tuffix-vm//leaderboard/report username=your_username guesses=num_guess status=win/lost`
+  `http POST tuffix-vm/leaderboard/report username=your_username guesses=num_guess status=win/lost`
