@@ -15,8 +15,8 @@ server {
     }
 
     location = /webhook {
-        auth_basic              off;
-        proxy_pass              http://backend-servers;
+       auth_basic               off;
+       proxy_pass               http://backend-servers;
     }
 
     location = /leaderboard/top10 {
@@ -24,7 +24,6 @@ server {
     }
 
     location = /leaderboard/report {
-	    internal;
         proxy_pass              http://localhost:5400;
         proxy_pass_request_body off;
         proxy_set_header        Content-Length "";
