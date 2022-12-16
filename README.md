@@ -37,9 +37,9 @@ For some reason, the global attribute will always be null so the next element in
 
 - To configure nginx, copy the contents of the file `nginx-config` at the root of the project, into the file on your VM located at the path `/etc/nginx/sites-enabled/tutorial`
 
-- Then, change directory into the project and run `sh bin/init.sh` to set up the necessary file structure and start the services with foreman.
+- Then, change directory into the project and run `sh bin/init.sh` to set up the necessary file structure and start the cluster with foreman.
 
-- Finally, in a separate terminal window, while the services are running, run the command `sh bin/db.sh` from the project root to initialize the tables and populate the database with valid words.
+- Finally, in a separate terminal window, while the cluster is running and active, run the command `sh bin/db.sh` from the project root to initialize the tables and populate the database with valid words, and start the services.
 
 ### Using the API
 

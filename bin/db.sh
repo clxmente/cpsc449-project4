@@ -8,3 +8,6 @@ echo "Successfully initialized database."
 echo "Populating valid words..."
 python3 ./share/populate.py
 echo "Successfully populated Databases"
+
+echo "Starting Services"
+foreman start

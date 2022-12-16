@@ -110,12 +110,10 @@ async def get_top_ten():
 
 
 @app.route("/leaderboard/report", methods=["POST"])
-@validate_response(User, 200)
-@validate_response(Error, 400)
 @tag("Leaderboard")
 async def post_game_results():
     req_body = await request.get_json()
-    user = "user:" + req_body["username"]
+    user = req_body["username"]
     guesses = req_body["guesses"]
     status = req_body["status"].lower()
 
@@ -134,7 +132,6 @@ async def post_game_results():
         r.zadd("players", {user: avg})
     else:
         r.hmset(user, {"gamesPlayed": 1, "totalScore": score})
-        avg = await average_score(user)
-        r.zadd("players", {user: avg})
+        r.zadd("players", {user: score})
 
     return r.hgetall(user), 200
