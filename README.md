@@ -41,11 +41,7 @@ For some reason, the global attribute will always be null so the next element in
 
 - Finally, in a separate terminal window, while the cluster is running and active, run the command `sh bin/db.sh` from the project root to initialize the tables and populate the database with valid words, and start the services.
 
-- Running the CronJob, run `man crontab` 
-
-- Install the Gnome Schedule by running `sudo apt-get install gnome-schedule` in a terminal
-
-- Starting to Use Cron `crontab -e`
+- To setup the cronjob, run `crontab -e`, and select the editor of your choice. Then paste in the contents of the file `crontab` into the editor and save the file.
 
 ### Using the API
 
@@ -83,4 +79,4 @@ For some reason, the global attribute will always be null so the next element in
 
 - **Add a new game result** by making a `POST` request to the endpoint `/leaderboard/report` like so:
 
-  `http POST tuffix-vm/leaderboard/report username=your_username guesses=num_guess status=win/lost`
+  `http POST tuffix-vm/leaderboard/report username=your_username guesses=num_guess status=won/lost`
