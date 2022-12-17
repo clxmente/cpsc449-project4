@@ -47,7 +47,6 @@ For some reason, the global attribute will always be null so the next element in
 
 - Starting to Use Cron `crontab -e`
 
-- 
 ### Using the API
 
 > Every endpoint requires BASIC authentication _except_ for `/auth/register` and `/leaderboard/top10`
