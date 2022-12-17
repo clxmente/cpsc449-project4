@@ -79,4 +79,4 @@ For some reason, the global attribute will always be null so the next element in
 
 - **Add a new game result** by making a `POST` request to the endpoint `/leaderboard/report` like so:
 
-  `http POST tuffix-vm/leaderboard/report username=your_username guesses=num_guess status=win/lost`
+  `http POST tuffix-vm/leaderboard/report username=your_username guesses=num_guess status=won/lost`
